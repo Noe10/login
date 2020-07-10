@@ -1,0 +1,52 @@
+nav{
+    text-align: center;
+    padding:20px;
+
+}
+
+nav a{
+    text-decoration:none;
+    color:inherit;/*color de la letra*/
+    font-size:20px;/* tamaño de la letra*/
+    
+}
+nav li{
+    display:inline-block;
+    width:150px;
+    height:30px;
+    /*padding:5px 10px ;*/
+    
+
+    background-color:red;
+    border:1px solid #000;
+    text-align:center;
+    color:#fff;
+    position:relative;
+    
+}
+nav li:hover{
+    background-color:#fff;
+    color:red;
+}
+
+nav li>ul{
+    display:none;
+}
+
+nav li:hover>ul{
+    display:block;
+    position:absolute;
+    top:30px;
+    left:30px;
+}
+
+
+
+
+
+
+
+
+
+
+
