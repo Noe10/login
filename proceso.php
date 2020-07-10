@@ -1,7 +1,7 @@
 <?php
    require 'conexion.php';   
    include('sesion.php');
-
+	session_start();
    if($_SERVER["REQUEST_METHOD"] == "POST") 
     {
       // Usamos el nombre de usuario enviado de nuestroformulario
@@ -15,6 +15,7 @@
 	if(	$total > 0)
 		{
 			$_SESSION['n1']=$row['usuario'];
+			$_SESSION['login']=true;
 
 			echo "<script>alert('BIENVENIDO AL SISTEMA DE BANCO ')</script>";
 			echo "<script>window.location='menu.php'</script>"; 

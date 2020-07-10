@@ -2,24 +2,24 @@
 include('../conexion.php');
 if(isset($_POST['cliente'])) {
   $cliente = $_POST['cliente'];
-  $query = "SELECT sum(monto ) from retiros d inner join cliente c on c.n_cuenta = d.cliente where c.nombre = '$cliente'"; 
-  $result = mysqli_query($connection, $query);
+  $retiros = "SELECT sum(monto ) from retiros d inner join cliente c on c.n_cuenta = d.cliente where c.nombre = '$cliente'"; 
+  $result = mysqli_query($connection, $retiros);
+  $pagos = "SELECT sum(monto ) from depositos d inner join cliente c on c.n_cuenta = d.cliente where c.nombre = '$cliente'"; 
+  $result1 = mysqli_query($connection, $pagos);
 
   if (!$result) {
     die('Query Failed.');
   }
 
-  $json = array();
-  while($row = mysqli_fetch_array($result)) {
-    $json[] = array(
-      'n_cuenta' => $row['n_cuenta'],
-      'monto' => $row['monto'],
-      'fecha' => $row['fecha'],
-    
+   
+  $dataRetiros = $result->fetch_row();
+  $dataPagos = $result1->fetch_row();
+  
+  $monto =  $dataPagos[0] - $dataRetiros[0] ;
 
-    );
-  }
-  $jsonstring = json_encode($json);
-  echo $jsonstring;
+
+  echo $monto;
+  
+
 }
 ?>

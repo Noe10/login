@@ -106,6 +106,24 @@ $(document).ready(function() {
     
   
       });
+
+      const url3 ='consultas/cliente-monto.php';
+      $.post(url3, postData, (response) => {
+        console.log(response);
+        const tasks = JSON.parse(response);
+
+          console.log(tasks);
+          
+        let template = '';
+       
+          template += `
+                <p>Monto S/. ${tasks}  </p>
+                `
+      
+        $('#monto').html(template);
+    
+  
+      });
     });
   
   
@@ -158,42 +176,9 @@ $(document).ready(function() {
     }
   
     // Get a Single Task by Id 
-    $(document).on('change', '.task-item', (e) => {
-
-      console.log('editndo')
-      const element = $(this)[0].activeElement.parentElement.parentElement;
-      const id = $(element).attr('taskId');
-      console.log(id);
-      
-      $.post('deposito/deposito-single.php', {id}, (response) => {
-       
-        
-        const task = JSON.parse(response);
-        $('#fecha').val(task.fecha);
-        $('#monto').val(task.monto);
-        $('#cliente').val(task.cliente);
-        $('#taskId').val(task.cod_dep);
-  
-        edit = true;
-        console.log(edit);
-        
-      });
-      e.preventDefault();
-    });
+    
   
     // Delete a Single Task
-    $(document).on('click', '.task-delete', (e) => {
-      if(confirm('Are you sure you want to delete it?')) {
-        const element = $(this)[0].activeElement.parentElement.parentElement;
-        const id = $(element).attr('taskId');
-        console.log(id);
-        
-        $.post('deposito/deposito-delete.php', {id}, (response) => {
-          console.log(response);
-          
-          fetchTasks();
-        });
-      }
-    });
+   
   });
   

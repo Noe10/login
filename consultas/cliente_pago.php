@@ -8,13 +8,16 @@ if(isset($_POST['cliente'])) {
   if (!$result) {
     die('Query Failed.');
   }
-  $pago_servicios = $query->fetch_row();
-  
-  $montoPago =  $pago_servicios[0] ;
+  $json = array();
+  while($row = mysqli_fetch_array($result)) {
+    $json[] = array(
+      'n_cuenta' => $row['n_cuenta'],
+      'monto' => $row['monto'],
+      'fecha' => $row['fecha'],
+    
+    );
+  }
 
-  
-
- 
   $jsonstring = json_encode($json);
   echo $jsonstring;
 }

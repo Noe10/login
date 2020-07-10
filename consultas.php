@@ -81,8 +81,9 @@
                             <tbody id="tasks2"></tbody>
                         </table>
                     </div>
-
-
+                        
+                    <div id="monto">
+                    </div>
             </div>
         </div>
         <script
